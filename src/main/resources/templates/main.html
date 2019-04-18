@@ -16,14 +16,32 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-            <ul class="navbar-nav">
-                <li class="nav-item">增加</li>
-                <li class="nav-item">浏览</li>
-                <li class="nav-item">修改</li>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link active">增加</a></li>
+                <li class="nav-item"><a class="nav-link">浏览</a></li>
+                <li class="nav-item"><a class="nav-link">修改</a></li>
             </ul>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-5">
             <h1>增加条目</h1>
+            <form>
+                <div class="form-group">
+                    <label for="bangumi">番剧名称：</label>
+                    <input type="text" class="form-control" id="bangumi">
+                </div>
+                <div class="form-groupl">
+                    <label for="comment">番剧介绍：</label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="cover_image">上传封面图：</label>
+                    <input type="file" class="form-control" id="cover_image">
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="links">剧集地址：</label>-->
+<!--                    <input type="text" class="form-control" id="links">-->
+<!--                </div>-->
+            </form>
         </div>
     </div>
 </div>

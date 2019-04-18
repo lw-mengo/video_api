@@ -24,9 +24,11 @@ public class UserController {
         User user = userService.findByName(username);
         logger.info(username);
         if (user != null) {
-            logger.info(user.getPassword());
-            logger.info(CommonResult.success());
-            return CommonResult.success();
+            if (password.equals(user.getPassword())) {
+                return CommonResult.success();
+            } else {
+                return CommonResult.error();
+            }
         } else {
             return CommonResult.error();
         }

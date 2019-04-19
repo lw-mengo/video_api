@@ -35,18 +35,44 @@
                 </div>
                 <div class="form-group">
                     <label for="cover_image">上传封面图：</label>
-                    <input type="file" class="form-control" id="cover_image">
+                    <input type="file" class="form-control" id="cover_image" accept="image/*">
                 </div>
 <!--                <div class="form-group">-->
 <!--                    <label for="links">剧集地址：</label>-->
 <!--                    <input type="text" class="form-control" id="links">-->
 <!--                </div>-->
             </form>
+            <button type="button" class="btn btn-primary" onclick="btn()">提交</button>
         </div>
     </div>
 </div>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+    function btn() {
+        if ($('#cover_image')[0].files[0]==null||$('#bangumi').val()==''||$('#comment').val()==''){
+            console.info('null');
+            return;
+        }
+        var formData = new FormData();
+        formData.append('file',$('#cover_image')[0].files[0]);
+        formData.append('name',$('#bangumi').val());
+        formData.append('content',$('#comment').val());
+        $.ajax({
+            url:'/saveBangumi',
+            type:'post',
+            cache:false,
+            data:formData,
+            processData:false,//这2个必须加
+            contentType:false,
+            dataType:'json',
+            success:function (data) {
+                console.info(data);
+            }
+        });
+    }
+    
+</script>
 </body>
 </html>

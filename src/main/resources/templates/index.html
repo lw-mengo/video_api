@@ -47,8 +47,11 @@
                     'password': $('#pwd').val()
                 },
                 success: function (data) {
-                    window.location.href='/admin';
-                    console.info(data);
+                    if (data['status'] == "success") {
+                        window.location.href = '/admin';
+                    }else {
+                        console.info(data['status']);
+                    }
                 },
                 error: function (XMLHttpRequest, textStatus) {
                     console.info(XMLHttpRequest.responseText);

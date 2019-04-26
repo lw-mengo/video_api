@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>全部新番</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>新番列表</h2>
+    <p>选中标题可以操作</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>Bid</th>
+            <th>操作</th>
+            <th>API</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data:${dataList}">
+            <td th:text="${data.getName()}"></td>
+            <td th:text="${data.getBid()}"></td>
+            <!--thymeleaf的a标签href属性用法如下-->
+            <td><a th:href="@{'addEpisode?bid='+${data.getBid()}}">增加</a></td>
+            <td><a th:href="@{'api/listEpisode?bid='+${data.getBid()}}">查看</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

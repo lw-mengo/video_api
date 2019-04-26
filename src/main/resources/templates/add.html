@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加剧集</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h4 th:text="${bid}" id="bid"></h4>
+    <form>
+        <div class="form-group">
+            <label for="episode">集数：</label>
+            <input type="number" class="form-control" id="episode" maxlength="2" min="1" max="99" step="1" value="1">
+        </div>
+        <div class="form-group">
+            <label for="video_url">视频地址:</label>
+            <input type="url" class="form-control" id="video_url">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="my_submit()">提交</button>
+    </form>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    function my_submit() {
+        let bid = $('#bid').html();
+        let episode = $('#episode').val();
+        let video_url = $('#video_url').val();
+        if (episode==''||video_url==''){
+            alert('信息不全');
+            return false;
+        }
+        $.ajax({
+           type:'POST',
+            url:'save_episode',
+            data:{
+               'bid':bid,
+                'video_url':video_url,
+                'num':episode
+            },
+            dataType:'json',
+            success:function (data) {
+                console.info(data);
+            },
+            error:function (data) {
+                console.info(data.responseText);
+            }
+        });
+
+
+    }
+</script>
+</body>
+</html>

@@ -11,7 +11,11 @@ import java.io.IOException;
 public class FileSaveUtil {
     private static final String PATH_URL = "F:\\upload\\";
     public static String getFilePath(String fileName) {
-        String filePath = PATH_URL + fileName;
+        if (fileName.contains("\\")){
+            int pos = fileName.lastIndexOf("\\")+1;
+            fileName = fileName.substring(pos);
+        }
+        String filePath =  fileName;
         return filePath;
     }
 
@@ -21,7 +25,6 @@ public class FileSaveUtil {
             int pos = fileName.lastIndexOf("\\")+1;
             fileName = fileName.substring(pos);
         }
-        System.out.println(fileName);
         File f = new File(PATH_URL + fileName);
         if (!f.getParentFile().exists()) {
             f.getParentFile().mkdir();

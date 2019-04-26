@@ -5,32 +5,21 @@
     <title>Title</title>
 </head>
 <body>
- <button onclick="myclick()">点击我测试</button>
+<button onclick="myclick()">点击我测试</button>
+<p id="my_text"></p>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     function myclick() {
-        $.ajax({
-            type: 'post',
-            url: '/api/login',
-            //dataType: 'json',
-            data: {
-                'username': 'admin',
-                'password': 159357
-            },
-            success: function (data) {
-                alert(data);
-                console.info(data);
-            },
-            error:function (XMLHttpRequest,textStatus) {
-                console.info(XMLHttpRequest.responseText);
-                console.log(XMLHttpRequest.status);
-                console.log(textStatus);
-            },
-            complete:function (XMLHttpRequest) {
-                console.log(XMLHttpRequest.responseText);
-            }
-        });
+        axios.get('api/listEpisode?bid=33f3e7fc').then(function (response) {
+            let my_text =response.data;
+            console.log(response.data[0]);
+            $('#my_text').text(my_text[0]['bid']);
+            console.info(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        })
     }
 </script>
 </html>

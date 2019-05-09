@@ -15,14 +15,14 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 text-center">
             <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link active">增加</a></li>
-                <li class="nav-item"><a class="nav-link">浏览</a></li>
-                <li class="nav-item"><a class="nav-link">修改</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">增加番剧</a></li>
+                <li class="nav-item"><a class="nav-link">浏览番剧</a></li>
+                <li class="nav-item"><a class="nav-link">修改番剧</a></li>
             </ul>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 offset-md-2">
             <h1>增加条目</h1>
             <form>
                 <div class="form-group">
@@ -37,12 +37,14 @@
                     <label for="cover_image">上传封面图：</label>
                     <input type="file" class="form-control" id="cover_image" accept="image/*">
                 </div>
-<!--                <div class="form-group">-->
-<!--                    <label for="links">剧集地址：</label>-->
-<!--                    <input type="text" class="form-control" id="links">-->
-<!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                    <label for="links">剧集地址：</label>-->
+                <!--                    <input type="text" class="form-control" id="links">-->
+                <!--                </div>-->
             </form>
-            <button type="button" class="btn btn-primary" onclick="btn()">提交</button>
+            <div class="text-right">
+                <button type="button" class="btn btn-primary" onclick="btn()">提交</button>
+            </div>
         </div>
     </div>
 </div>
@@ -51,28 +53,28 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
     function btn() {
-        if ($('#cover_image')[0].files[0]==null||$('#bangumi').val()==''||$('#comment').val()==''){
+        if ($('#cover_image')[0].files[0] == null || $('#bangumi').val() == '' || $('#comment').val() == '') {
             console.info('null');
             return;
         }
         var formData = new FormData();
-        formData.append('file',$('#cover_image')[0].files[0]);
-        formData.append('name',$('#bangumi').val());
-        formData.append('content',$('#comment').val());
+        formData.append('file', $('#cover_image')[0].files[0]);
+        formData.append('name', $('#bangumi').val());
+        formData.append('content', $('#comment').val());
         $.ajax({
-            url:'/saveBangumi',
-            type:'post',
-            cache:false,
-            data:formData,
-            processData:false,//这2个必须加
-            contentType:false,
-            dataType:'json',
-            success:function (data) {
+            url: '/saveBangumi',
+            type: 'post',
+            cache: false,
+            data: formData,
+            processData: false,//这2个必须加
+            contentType: false,
+            dataType: 'json',
+            success: function (data) {
                 console.info(data);
             }
         });
     }
-    
+
 </script>
 </body>
 </html>
